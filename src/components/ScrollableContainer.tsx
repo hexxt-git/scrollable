@@ -20,7 +20,7 @@ export const ScrollableContainer: React.FC<ScrollableContainerProps> = ({
   autoHideDelay = 1000,
   showVerticalScrollbar = true,
   showHorizontalScrollbar = true,
-  lerpFactor = 0.1,
+  lerpFactor = 0.2,
   animationThreshold = 15,
 }) => {
   const {

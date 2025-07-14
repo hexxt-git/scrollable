@@ -23,7 +23,7 @@ interface UseScrollbarOptions {
 export function useScrollbar(options: UseScrollbarOptions = {}) {
   const {
     autoHideDelay = 1000,
-    lerpFactor = 0.1,
+    lerpFactor = 0.2,
     animationThreshold = 15, // smoother scrolling
   } = options;
 
