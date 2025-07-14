@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Hide native scrollbars */
 @layer utilities {
   .scrollbar-hide {

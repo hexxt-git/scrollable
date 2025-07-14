@@ -5,15 +5,23 @@ function App() {
   const [items, setItems] = useState(5);
   return (
     <div className="h-screen bg-gray-50 dark:bg-gray-900 relative">
-      <button
-        className="absolute top-2 right-2 z-10 bg-gray-800 dark:bg-gray-200 p-2 rounded-lg text-white dark:text-black"
-        onClick={() => setItems(items + 5)}
-      >
-        {/* TODO: the hook isnt updating with the hight until you scroll */}
-        Add 5 items
-      </button>
+      <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
+        <button
+          className="bg-gray-800 dark:bg-gray-200 p-2 rounded-lg text-white dark:text-black cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-300"
+          onClick={() => setItems(items + 5)}
+        >
+          Add 5 items
+        </button>
+        <button
+          className="bg-gray-800 dark:bg-gray-200 p-2 rounded-lg text-white dark:text-black cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-300"
+          onClick={() => setItems(Math.max(0, items - 5))}
+        >
+          Remove 5 items
+        </button>
+      </div>
+
       <ScrollableContainer autoHideDelay={1500} className="h-full">
-        <div className="max-w-4xl mx-auto py-8 space-y-6">
+        <div className="max-w-4xl mx-auto p-6 space-y-4">
           {Array.from({ length: items }).map((_, index) => (
             <ScrollableContainer
               key={index}
