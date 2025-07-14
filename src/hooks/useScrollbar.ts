@@ -45,7 +45,7 @@ export function useScrollbar(options: UseScrollbarOptions = {}) {
   const isAnimatingRef = useRef(false);
 
   const lerp = useCallback((a: number, b: number, k: number) => {
-    // there is an issue its frame rate dependent
+    // TODO: there is an issue its frame rate dependent
     return a + (b - a) * k;
   }, []);
 
