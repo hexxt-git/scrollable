@@ -92,7 +92,7 @@ export const Scrollbar: React.FC<ScrollbarProps> = ({
           }`}
           onMouseDown={handleThumbMouseDown}
           style={{
-            [isVertical ? "top" : "left"]: `${thumbPosition}px`,
+            transform: `translate${isVertical ? "Y" : "X"}(${thumbPosition}px)`,
             [isVertical ? "height" : "width"]: `${thumbSize}px`,
             [isVertical ? "width" : "height"]: "8px",
           }}
