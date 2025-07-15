@@ -16,6 +16,8 @@ interface ScrollbarState {
 
 interface UseScrollbarOptions {
   autoHideDelay?: number;
+  exitHideDelay?: number;
+  showOnMouseMove?: boolean;
   lerpFactor?: number;
   animationThreshold?: number;
 }
@@ -23,6 +25,8 @@ interface UseScrollbarOptions {
 export function useScrollbar(options: UseScrollbarOptions = {}) {
   const {
     autoHideDelay = 1000,
+    exitHideDelay = 0,
+    showOnMouseMove = false,
     lerpFactor = 0.2,
     animationThreshold = 15, // smoother scrolling
   } = options;
@@ -167,11 +171,14 @@ export function useScrollbar(options: UseScrollbarOptions = {}) {
   }, [showScrollbar]);
 
   const handleMouseLeave = useCallback(() => {
-    if (hideTimeoutRef.current) {
-      clearTimeout(hideTimeoutRef.current);
+    if (exitHideDelay > 0) {
+      hideTimeoutRef.current = setTimeout(() => {
+        setState((prev) => ({ ...prev, isVisible: false }));
+      }, exitHideDelay);
+    } else {
+      setState((prev) => ({ ...prev, isVisible: false }));
     }
-    setState((prev) => ({ ...prev, isVisible: false }));
-  }, []);
+  }, [exitHideDelay]);
 
   const scrollTo = useCallback((top: number, left?: number) => {
     if (elementRef.current) {
@@ -193,6 +200,12 @@ export function useScrollbar(options: UseScrollbarOptions = {}) {
     }
   }, []);
 
+  const handleMouseMove = useCallback(() => {
+    if (showOnMouseMove) {
+      showScrollbar();
+    }
+  }, [showOnMouseMove, showScrollbar]);
+
   // Cleanup function
   useEffect(() => {
     return () => {
@@ -211,6 +224,7 @@ export function useScrollbar(options: UseScrollbarOptions = {}) {
     handleScroll,
     handleMouseEnter,
     handleMouseLeave,
+    handleMouseMove,
     scrollTo,
     scrollBy,
     updateScrollState,

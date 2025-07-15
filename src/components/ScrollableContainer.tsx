@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useScrollbar } from "../hooks/useScrollbar";
 import { Scrollbar } from "./Scrollbar";
 
@@ -7,6 +7,8 @@ interface ScrollableContainerProps {
   className?: string;
   style?: React.CSSProperties;
   autoHideDelay?: number;
+  exitHideDelay?: number;
+  showOnMouseMove?: boolean;
   showVerticalScrollbar?: boolean;
   showHorizontalScrollbar?: boolean;
   lerpFactor?: number;
@@ -18,6 +20,8 @@ export const ScrollableContainer: React.FC<ScrollableContainerProps> = ({
   className = "",
   style = {},
   autoHideDelay = 1000,
+  exitHideDelay = 0,
+  showOnMouseMove = false,
   showVerticalScrollbar = true,
   showHorizontalScrollbar = true,
   lerpFactor = 0.2,
@@ -29,14 +33,15 @@ export const ScrollableContainer: React.FC<ScrollableContainerProps> = ({
     handleScroll,
     handleMouseEnter,
     handleMouseLeave,
+    handleMouseMove,
     updateScrollState,
   } = useScrollbar({
     autoHideDelay,
+    exitHideDelay,
+    showOnMouseMove,
     lerpFactor,
     animationThreshold,
   });
-
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = elementRef.current;
@@ -61,11 +66,11 @@ export const ScrollableContainer: React.FC<ScrollableContainerProps> = ({
 
   return (
     <div
-      ref={containerRef}
       className={`relative overflow-hidden w-full h-full ${className}`}
       style={style}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
     >
       <div
         ref={elementRef as React.RefObject<HTMLDivElement>}

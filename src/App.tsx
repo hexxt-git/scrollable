@@ -20,25 +20,41 @@ function App() {
         </button>
       </div>
 
-      <ScrollableContainer autoHideDelay={1500} className="h-full">
+      <ScrollableContainer
+        autoHideDelay={1500}
+        exitHideDelay={1000}
+        showOnMouseMove={true}
+        className="h-full"
+      >
         <div className="max-w-4xl mx-auto p-6 space-y-4">
           {Array.from({ length: items }).map((_, index) => (
             <ScrollableContainer
               key={index}
               className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
             >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                Section {index + 1}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-3">
-                This is a demo of the custom scrollbar implementation. The
-                scrollbar will auto-hide and appear when you scroll or hover.
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-              </p>
+              <div className="w-[1000px]">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                  Section {index + 1}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-3">
+                  This is a demo of the custom scrollbar implementation. The
+                  scrollbar will auto-hide and appear when you scroll or hover.
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris. Lorem ipsum dolor sit amet consectetur adipisicing
+                  elit. Laudantium expedita, maxime ipsum iusto, tempora quae
+                  explicabo quidem et eligendi saepe placeat architecto.
+                  Deserunt fuga est molestiae ullam officia ea repellendus!
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Modi possimus perferendis debitis id nisi magnam veniam nulla
+                  consequatur. Laboriosam eligendi animi mollitia amet
+                  voluptates sapiente eos impedit reiciendis harum ea.
+                </p>
+              </div>
             </ScrollableContainer>
           ))}
         </div>
