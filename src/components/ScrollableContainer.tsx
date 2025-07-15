@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useScrollbar } from "../hooks/useScrollbar";
 import { Scrollbar } from "./Scrollbar";
+import "./Scrollable.css";
 
 interface ScrollableContainerProps {
   children: React.ReactNode;
@@ -66,7 +67,7 @@ export const ScrollableContainer: React.FC<ScrollableContainerProps> = ({
 
   return (
     <div
-      className={`relative overflow-hidden w-full h-full ${className}`}
+      className={`scrollable-container ${className}`}
       style={style}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -74,7 +75,7 @@ export const ScrollableContainer: React.FC<ScrollableContainerProps> = ({
     >
       <div
         ref={elementRef as React.RefObject<HTMLDivElement>}
-        className="w-full h-full overflow-auto scrollbar-hide"
+        className="scrollable-content"
         onScroll={(e) => handleScroll(e.nativeEvent)}
       >
         {children}

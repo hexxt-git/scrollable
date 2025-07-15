@@ -1,4 +1,5 @@
 import React from "react";
+import "./Scrollable.css";
 
 interface ScrollbarProps {
   orientation: "vertical" | "horizontal";
@@ -76,39 +77,19 @@ export const Scrollbar: React.FC<ScrollbarProps> = ({
   return (
     <div
       className={`
-        absolute
-        pointer-events-none
-        z-50
-        transition-opacity
-        duration-150
-        ease-out
-        ${isVisible ? "opacity-100 visible" : "opacity-0"}
+        scrollbar-track
+        ${isVisible ? "scrollbar-track-visible" : "scrollbar-track-hidden"}
         ${
-          isVertical ? "top-0 right-0 w-4 h-full" : "bottom-0 left-0 h-4 w-full"
+          isVertical ? "scrollbar-track-vertical" : "scrollbar-track-horizontal"
         }
         ${className}
       `}
     >
-      <div
-        className="relative w-full h-full pointer-events-auto"
-        onClick={handleTrackClick}
-      >
+      <div className="scrollbar-track-inner" onClick={handleTrackClick}>
         <div
-          className="
-            absolute
-            bg-black/20
-            dark:bg-white/20
-            hover:bg-black/40
-            dark:hover:bg-white/40
-            active:bg-black/50
-            dark:active:bg-white/50
-            min-w-4
-            min-h-4
-            cursor-pointer
-            transition-colors
-            duration-300
-            ease-out
-          "
+          className={`scrollbar-thumb ${
+            !isVertical ? "scrollbar-thumb-horizontal" : ""
+          }`}
           onMouseDown={handleThumbMouseDown}
           style={{
             [isVertical ? "top" : "left"]: `${thumbPosition}px`,

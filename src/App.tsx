@@ -3,6 +3,10 @@ import { useState } from "react";
 
 function App() {
   const [items, setItems] = useState(5);
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
     <div className="h-screen bg-gray-50 dark:bg-gray-900 relative">
       <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
@@ -17,6 +21,12 @@ function App() {
           onClick={() => setItems(Math.max(0, items - 5))}
         >
           Remove 5 items
+        </button>
+        <button
+          className="bg-gray-800 dark:bg-gray-200 p-2 rounded-lg text-white dark:text-black cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-300"
+          onClick={toggleTheme}
+        >
+          toggle theme
         </button>
       </div>
 
